@@ -1,0 +1,32 @@
+{% extends "basicapp/base.html" %}
+{% load staticfiles %} <!--It is used for getting the static files from static folder-->
+
+{% block body_block %}
+  <div class="jumbotron">
+    <!--{% if registered %}
+      <h1>Thank You for Registering</h1>
+    {% else %} -->
+      <h1>Register</h1><br>
+      <form enctype="multipart/form-data" method="POST">
+        {% csrf_token %}
+
+        {% for field in user_form%}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}" class="label"><b>{{ field.html_name }}</b></label><br>
+            {{ field }}
+          </div>
+        {% endfor %}
+
+        {% for field in profile_form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}" class="label"><b>{{ field.html_name }}</b></label><br>
+            {{ field }}
+          </div>
+        {% endfor %}
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+      </form>
+    <!-- {% endif %} -->
+  </div>
+{% endblock %}
